@@ -4,14 +4,14 @@ from IVsKeys import *
 import threading
 
 def Crypt():
-	iv1,iv2=generateIV()
+	iv1=generateIV()
 	k1,k2=generateKey()
 	CryptKeys()
 	t1 = threading.Thread(target=AES, args=(k1,iv1,))
-	t2 = threading.Thread(target=BlowFish, args=(k1,iv2,))
-	t3 = threading.Thread(target=TrippleDES, args=(k1,iv2,))
-	t4 = threading.Thread(target=IDEA, args=(k1,iv2,))
-	t5 = threading.Thread(target=EFernet, args=(k2,))
+	t2 = threading.Thread(target=AES, args=(k1,iv1,))
+	t3 = threading.Thread(target=AES, args=(k1,iv1,))
+	t4 = threading.Thread(target=AES, args=(k1,iv1,))
+	t5 = threading.Thread(target=AES, args=(k2,iv1,))
 
     #Starting the Encription Process	
 	t1.start() 
@@ -34,10 +34,10 @@ def DeCrypt():
 	iv=FetchIV()
 	k1,k2=FetchKey()
 	t1 = threading.Thread(target=DAES, args=(k1,iv[0],))
-	t2 = threading.Thread(target=DBlowFish, args=(k1,iv[1],))
-	t3 = threading.Thread(target=DTrippleDES, args=(k1,iv[1],))
-	t4 = threading.Thread(target=DIDEA, args=(k1,iv[1],))
-	t5 = threading.Thread(target=DFernet, args=(k2,))
+	t2 = threading.Thread(target=DAES, args=(k1,iv[0],))
+	t3 = threading.Thread(target=DAES, args=(k1,iv[1],))
+	t4 = threading.Thread(target=DAES, args=(k1,iv[1],))
+	t5 = threading.Thread(target=DAES, args=(k2,iv[1],))
 
     #Starting the Encription Process
 	t1.start() 

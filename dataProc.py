@@ -64,7 +64,6 @@ def trim():
 		f.write(tData)
 		f.close()
 		tData=""
-			
 def Merge():
 	mainFile=open("Output.txt","w")
 	for i in range(0,5):

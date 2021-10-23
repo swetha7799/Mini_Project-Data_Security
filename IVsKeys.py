@@ -1,15 +1,16 @@
 import os
 from cryptography.fernet import Fernet
 
+
 def generateIV():
 	iv1 = os.urandom(16)
-	iv2 = os.urandom(8)
+	#iv2 = os.urandom(8)
 	f=open(os.path.join(os.getcwd()+"/Keys_IV",'IV.txt'),'wb')
 	f.write(iv1)
 	f.write(b"::::")
-	f.write(iv2)
+    #f.write(iv2)
 	f.close()
-	return iv1,iv2
+	return iv1
 
 def generateKey():
 	k1 = os.urandom(16)

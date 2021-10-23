@@ -1,68 +1,25 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
+
 import os
-
-
+def cn():
+    i=0
+    n=str(i+1)+".txt"
+    return n
 def DAES(key,iv):
-    f=open(os.path.join(os.getcwd()+"/Parts","0.txt"),"rb")
+    n=cn()
+    f=open(os.path.join(os.getcwd()+"/Parts",n),"rb")
     content=f.read()
     f.close()
     backend = default_backend()
     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
     decryptor = cipher.decryptor()
     content=decryptor.update(content) + decryptor.finalize()
-    f=open(os.path.join(os.getcwd()+"/Parts","0.txt"),"wb")
+    f=open(os.path.join(os.getcwd()+"/Parts",n),"wb")
     f.write(content)
     f.close()
     
-def DBlowFish(key,iv):
-    f=open(os.path.join(os.getcwd()+"/Parts","1.txt"),"rb")
-    content=f.read()
-    f.close()
-    backend = default_backend()
-    cipher = Cipher(algorithms.Blowfish(key), modes.CBC(iv), backend=backend)
-    decryptor = cipher.decryptor()
-    content=decryptor.update(content) + decryptor.finalize()
-    f=open(os.path.join(os.getcwd()+"/Parts","1.txt"),"wb")
-    f.write(content)
-    f.close()
-
-def DTrippleDES(key,iv):
-    f=open(os.path.join(os.getcwd()+"/Parts","2.txt"),"rb")
-    content=f.read()
-    f.close()
-    backend = default_backend()
-    cipher = Cipher(algorithms.TripleDES(key), modes.CBC(iv), backend=backend)
-    decryptor = cipher.decryptor()
-    content=decryptor.update(content) + decryptor.finalize()
-    f=open(os.path.join(os.getcwd()+"/Parts","2.txt"),"wb")
-    f.write(content)
-    f.close()
-    
-def DIDEA(key,iv):
-    f=open(os.path.join(os.getcwd()+"/Parts","3.txt"),"rb")
-    content=f.read()
-    f.close()
-    backend = default_backend()
-    cipher = Cipher(algorithms.IDEA(key), modes.CBC(iv), backend=backend)
-    decryptor = cipher.decryptor()
-    content=decryptor.update(content) + decryptor.finalize()
-    open(os.path.join(os.getcwd()+"/Parts","3.txt"),"wb").close()
-    f=open(os.path.join(os.getcwd()+"/Parts","3.txt"),"wb")
-    f.write(content)
-    f.close()
-    
-def DFernet(key):
-	f=open(os.path.join(os.getcwd()+"/Parts","4.txt"),"rb")
-	content=f.read()
-	f.close()
-	fer = Fernet(key)
-	content=fer.decrypt(content)
-	open(os.path.join(os.getcwd()+"/Parts","4.txt"),"w").close()
-	f=open(os.path.join(os.getcwd()+"/Parts","4.txt"),"wb")
-	f.write(content)
-	f.close()
 
 def DeCryptKeys():
     f=open('Secured.txt','rb')
